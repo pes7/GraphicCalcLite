@@ -1,0 +1,14 @@
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\bin\Debug\Parabollian.exe.config
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\bin\Debug\Parabollian.exe
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\bin\Debug\Parabollian.pdb
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.csprojResolveAssemblyReference.cache
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.Form1.resources
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.Properties.Resources.resources
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.csproj.GenerateResource.Cache
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.exe
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\obj\Debug\Parabollian.pdb
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\bin\Debug\LuaAble.dll
+C:\Users\ukolo\Source\Repos\Diplom\Parabollian\Parabollian\bin\Debug\LuaInterface.dll
+C:\Users\ukolo\Source\Repos\Parabollian\Parabollian\bin\Debug\Parabollian.exe.config
+C:\Users\ukolo\Source\Repos\Parabollian\Parabollian\obj\Debug\Parabollian.exe
+C:\Users\ukolo\Source\Repos\Parabollian\Parabollian\obj\Debug\Parabollian.pdb
