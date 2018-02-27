@@ -172,5 +172,10 @@ namespace Parabollian
             SizeOfPoint = (PointSize)Enum.Parse(typeof(PointSize),comboBox1.Text);
             changed();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
