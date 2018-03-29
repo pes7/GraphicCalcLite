@@ -23,3 +23,12 @@ C:\Users\ukolo\Source\Repos\Parabollian\GraphicCalcLite\Parabollian\obj\Debug\Pa
 C:\Users\ukolo\Source\Repos\Parabollian\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.Form1.resources
 C:\Users\ukolo\Source\Repos\Parabollian\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.Properties.Resources.resources
 C:\Users\ukolo\Source\Repos\Parabollian\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.csproj.GenerateResource.Cache
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\bin\Debug\Parabollian.exe.config
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\bin\Debug\Parabollian.exe
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\bin\Debug\Parabollian.pdb
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.Form1.resources
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.Properties.Resources.resources
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.csproj.GenerateResource.Cache
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.exe
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.pdb

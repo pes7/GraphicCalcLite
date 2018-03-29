@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,6 +22,9 @@ namespace Parabollian
 
         /*
          * Ukolov's Function : y=tg(x)*m+x^2*k; 
+         * y=sin(x)*x^2+m*x
+         * y=sin(x)*x/k+m*x
+         * y=abs(x)*tg(x)+sin(x)*m
          */
 
         public Form1()
@@ -42,6 +46,7 @@ namespace Parabollian
             }
         }
 
+        private Graphics gr;
         private void Generate(float k, float m, float step = 0.1f)
         {
             float start_x = 300, start_y = 300;
@@ -49,7 +54,7 @@ namespace Parabollian
             float x = 0;
             Brush pn = Brushes.Red;
             Brush coordLine = Brushes.Black;
-            Graphics gr = this.CreateGraphics();
+            gr = this.CreateGraphics();
             gr.Clear(Color.White);
             gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
             gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
@@ -70,7 +75,7 @@ namespace Parabollian
             is_Drowing = true;
             Brush pn = Brushes.Red;
             Brush coordLine = Brushes.Black;
-            Graphics gr = this.CreateGraphics();
+            gr = this.CreateGraphics();
             gr.Clear(Color.White);
             gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
             gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
@@ -176,6 +181,40 @@ namespace Parabollian
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Bitmap bt = new Bitmap(600, 600);
+            float start_x = 300, start_y = 300;
+            float y = 0;
+            float x = 0;
+            is_Drowing = true;
+            Brush pn = Brushes.Red;
+            Brush coordLine = Brushes.Black;
+            var gr = Graphics.FromImage(bt);
+            gr.Clear(Color.White);
+            gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
+            gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
+            try
+            {
+                float step = 1f;
+                string s = lua.Lua["step"].ToString();
+                float.TryParse(s, out step);
+                for (x = -200; x <= 200; x = x + step)
+                {
+
+                    lua.Lua["x"] = x;
+                    lua.Lua.DoString(textBox2.Text);
+                    object j = lua.Lua["y"];
+                    y = float.Parse(j.ToString());
+                    gr.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF((int)SizeOfPoint, (int)SizeOfPoint)));
+                }
+            }
+            catch { }
+            is_Drowing = false;
+            gr.DrawString(textBox2.Text,SystemFonts.MessageBoxFont,Brushes.Blue,new PointF(0, 560));
+            Clipboard.SetImage(bt);
         }
     }
 }
