@@ -25,6 +25,9 @@ namespace Parabollian
          * y=sin(x)*x^2+m*x
          * y=sin(x)*x/k+m*x
          * y=abs(x)*tg(x)+sin(x)*m
+         * y=abs(x)*tg(x)/k+sin(x)*m/tanh(x)-abs(x)
+         * y=(sin(x)*x^2+m*x)*tg(x)
+         * y=sin(x)*x*tg(m)+x*k
          */
 
         public Form1()
@@ -58,7 +61,7 @@ namespace Parabollian
             gr.Clear(Color.White);
             gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
             gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
-            for (x = -200; x <= 200; x = x + step)
+            for (x = -300; x <= 300; x = x + step)
             {
                 y = (float)(k * x + m * Math.Sin(x));
                 gr.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF(1, 1)));
@@ -86,7 +89,7 @@ namespace Parabollian
                     float step = 1f;
                     string s = lua.Lua["step"].ToString();
                     float.TryParse(s, out step);
-                    for (x = -200; x <= 200; x = x + step)
+                    for (x = -300; x <= 300; x = x + step)
                     {
                     
                             lua.Lua["x"] = x;
@@ -201,7 +204,7 @@ namespace Parabollian
                 float step = 1f;
                 string s = lua.Lua["step"].ToString();
                 float.TryParse(s, out step);
-                for (x = -200; x <= 200; x = x + step)
+                for (x = -300; x <= 300; x = x + step)
                 {
 
                     lua.Lua["x"] = x;
@@ -215,6 +218,31 @@ namespace Parabollian
             is_Drowing = false;
             gr.DrawString(textBox2.Text,SystemFonts.MessageBoxFont,Brushes.Blue,new PointF(0, 560));
             Clipboard.SetImage(bt);
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

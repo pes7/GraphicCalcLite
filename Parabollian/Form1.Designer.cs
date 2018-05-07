@@ -64,6 +64,7 @@
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(195, 45);
             this.trackBar1.TabIndex = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // trackBar2
@@ -75,6 +76,7 @@
             this.trackBar2.Size = new System.Drawing.Size(195, 45);
             this.trackBar2.TabIndex = 2;
             this.trackBar2.Value = 1;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             this.trackBar2.ValueChanged += new System.EventHandler(this.trackBar2_ValueChanged);
             // 
             // trackBar3
@@ -106,6 +108,7 @@
             this.textBox1.TabIndex = 5;
             this.textBox1.Text = "300";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -154,6 +157,7 @@
             this.label1.Size = new System.Drawing.Size(35, 25);
             this.label1.TabIndex = 10;
             this.label1.Text = "m:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -164,6 +168,7 @@
             this.label2.Size = new System.Drawing.Size(29, 25);
             this.label2.TabIndex = 10;
             this.label2.Text = "k:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // comboBox1
             // 
