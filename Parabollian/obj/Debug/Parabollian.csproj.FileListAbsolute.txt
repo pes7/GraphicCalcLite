@@ -32,3 +32,4 @@ C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\
 C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.csproj.GenerateResource.Cache
 C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.exe
 C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.pdb
+C:\Users\user\Documents\visual studio 2017\Projects\GraphicCalcLite\Parabollian\obj\Debug\Parabollian.Record.resources

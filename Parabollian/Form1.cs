@@ -45,32 +45,12 @@ namespace Parabollian
             if (!is_Drowing)
             {
                 listBox1.Items.Add(textBox2.Text);
-                Fure();
+                Fure(gr);
             }
         }
 
         private Graphics gr;
-        private void Generate(float k, float m, float step = 0.1f)
-        {
-            float start_x = 300, start_y = 300;
-            float y = 0;
-            float x = 0;
-            Brush pn = Brushes.Red;
-            Brush coordLine = Brushes.Black;
-            gr = this.CreateGraphics();
-            gr.Clear(Color.White);
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
-            for (x = -300; x <= 300; x = x + step)
-            {
-                y = (float)(k * x + m * Math.Sin(x));
-                gr.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF(1, 1)));
-                y = (float)(k * x);
-                gr.FillRectangle(Brushes.Blue, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF(1, 1)));
-            }
-        }
-
-        private void Fure()
+        private void Fure(Graphics ph, bool usethread = true)
         {
             float start_x = 300, start_y = 300;
             float y = 0;
@@ -78,31 +58,53 @@ namespace Parabollian
             is_Drowing = true;
             Brush pn = Brushes.Red;
             Brush coordLine = Brushes.Black;
-            gr = this.CreateGraphics();
-            gr.Clear(Color.White);
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
-            Drowingth = new Thread(() =>
+            ph.Clear(Color.White);
+            ph.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
+            ph.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
+            if (usethread == true)
+            {
+                Drowingth = new Thread(() =>
+                {
+                    try
+                    {
+                        float step = 1f;
+                        string s = lua.Lua["step"].ToString();
+                        float.TryParse(s, out step);
+                        for (x = FromToGenerate.X; x <= FromToGenerate.Y; x = x + step)
+                        {
+
+                            lua.Lua["x"] = x;
+                            lua.Lua.DoString(textBox2.Text);
+                            object j = lua.Lua["y"];
+                            y = float.Parse(j.ToString());
+                            ph.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF((int)SizeOfPoint, (int)SizeOfPoint)));
+                        }
+                    }
+                    catch { }
+                    is_Drowing = false;
+                });
+                Drowingth.Start();
+            }
+            else
             {
                 try
                 {
                     float step = 1f;
                     string s = lua.Lua["step"].ToString();
                     float.TryParse(s, out step);
-                    for (x = -300; x <= 300; x = x + step)
+                    for (x = FromToGenerate.X; x <= FromToGenerate.Y; x = x + step)
                     {
-                    
-                            lua.Lua["x"] = x;
-                            lua.Lua.DoString(textBox2.Text);
-                            object j = lua.Lua["y"];
-                            y = float.Parse(j.ToString());
-                            gr.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF((int)SizeOfPoint,(int)SizeOfPoint)));
+
+                        lua.Lua["x"] = x;
+                        lua.Lua.DoString(textBox2.Text);
+                        object j = lua.Lua["y"];
+                        y = float.Parse(j.ToString());
+                        ph.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF((int)SizeOfPoint, (int)SizeOfPoint)));
                     }
                 }
                 catch { }
                 is_Drowing = false;
-            });
-            Drowingth.Start();
+            }
         }
 
         private void InvokeUI(Action a)
@@ -139,7 +141,7 @@ namespace Parabollian
                 {
                     Drowingth?.Abort();
                     is_Drowing = true;
-                    Fure();
+                    Fure(gr);
                 }
             }
             catch { }
@@ -150,7 +152,7 @@ namespace Parabollian
             lua.Lua["step"] = 1f/float.Parse(textBox1.Text);
             Drowingth?.Abort();
             is_Drowing = true;
-            Fure();
+            Fure(gr);
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,7 +162,7 @@ namespace Parabollian
                 if (listBox1.SelectedItem != null)
                 {
                     textBox2.Text = listBox1.SelectedItem.ToString();
-                    Fure();
+                    Fure(gr);
                 }
             }
         }
@@ -183,40 +185,19 @@ namespace Parabollian
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            FromToGenerate = new Point(-300, 300);
+            gr = this.CreateGraphics();
+            textBox3.Text = $"{FromToGenerate.X}";
+            textBox4.Text = $"{FromToGenerate.Y}";
         }
 
+        public Point FromToGenerate;
         private void button4_Click(object sender, EventArgs e)
         {
             Bitmap bt = new Bitmap(600, 600);
-            float start_x = 300, start_y = 300;
-            float y = 0;
-            float x = 0;
-            is_Drowing = true;
-            Brush pn = Brushes.Red;
-            Brush coordLine = Brushes.Black;
-            var gr = Graphics.FromImage(bt);
-            gr.Clear(Color.White);
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(0, start_y), new PointF(600, start_y));
-            gr.DrawLine(new Pen(coordLine, 1), new PointF(start_x, 0), new PointF(start_x, 600));
-            try
-            {
-                float step = 1f;
-                string s = lua.Lua["step"].ToString();
-                float.TryParse(s, out step);
-                for (x = -300; x <= 300; x = x + step)
-                {
-
-                    lua.Lua["x"] = x;
-                    lua.Lua.DoString(textBox2.Text);
-                    object j = lua.Lua["y"];
-                    y = float.Parse(j.ToString());
-                    gr.FillRectangle(pn, new RectangleF(new PointF(start_x + x, start_y + (-1) * y), new SizeF((int)SizeOfPoint, (int)SizeOfPoint)));
-                }
-            }
-            catch { }
-            is_Drowing = false;
-            gr.DrawString(textBox2.Text,SystemFonts.MessageBoxFont,Brushes.Blue,new PointF(0, 560));
+            var gd = Graphics.FromImage(bt);
+            Fure(gd,false);
+            gd.DrawString(textBox2.Text,SystemFonts.MessageBoxFont,Brushes.Blue,new PointF(0, 560));
             Clipboard.SetImage(bt);
         }
 
@@ -243,6 +224,59 @@ namespace Parabollian
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                FromToGenerate.X = int.Parse(textBox3.Text);
+            }
+            catch { }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            FromToGenerate.Y = int.Parse(textBox4.Text);
+        }
+
+        Record rec = null;
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if(rec == null)
+            {
+                Thread th = new Thread(() =>
+                {
+                    rec = new Record(this);
+                    rec.Location = new Point(this.Location.X + this.Size.Width + 10, this.Location.Y);
+                    rec.ShowDialog();
+                });
+                th.Start();
+            }
+            else
+            {
+                rec.Show();
+                rec.Invoke((MethodInvoker)delegate
+                {
+                    rec.Location = new Point(this.Location.X + this.Size.Width + 10, this.Location.Y);
+                });
+            }
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (rec.Visible == true)
+            {
+                try
+                {
+                    rec.Invoke((MethodInvoker)delegate
+                    {
+                        rec.Location = new Point(this.Location.X + this.Size.Width + 10, this.Location.Y);
+                    });
+                }
+                catch { }
+            }
         }
     }
 }
